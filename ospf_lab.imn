@@ -37,6 +37,37 @@ node n0 {
     interface-peer {eth0 n1}
     interface-peer {eth1 n2}
     interface-peer {eth2 n5}
+    custom-configs {
+        custom-config-id default {
+            custom-command /usr/local/bin/quaggaboot.sh
+            config {
+                interface lo0
+                 ip address 127.0.0.1/8
+                 ipv6 address ::1/128
+                !
+                interface eth0
+                 ip address 10.0.0.1/24
+                 ipv6 address fc00::1/64
+                !
+                interface eth1
+                 ip address 10.0.1.1/24
+                 ipv6 address fc00:1::1/64
+                !
+                interface eth2
+                 ip address 10.0.7.1/24
+                 ipv6 address fc00:7::1/64
+                !
+                router ospf
+                 redistribute static
+                 redistribute connected
+                 redistribute rip
+                 network 0.0.0.0/0 area 1.0.0.0
+                !
+                
+            }
+        }
+    }
+    custom-selected default
 }
 
 node n1 {
@@ -84,6 +115,43 @@ node n1 {
     interface-peer {eth1 n4}
     interface-peer {eth2 n2}
     interface-peer {eth3 n3}
+    custom-configs {
+        custom-config-id default {
+            custom-command /usr/local/bin/quaggaboot.sh
+            config {
+                interface lo0
+                 ip address 127.0.0.1/8
+                 ipv6 address ::1/128
+                !
+                interface eth0
+                 ip address 10.0.0.2/24
+                 ipv6 address fc00::2/64
+                !
+                interface eth1
+                 ip address 10.0.2.1/24
+                 ipv6 address fc00:2::1/64
+                !
+                interface eth2
+                 ip address 10.0.3.2/24
+                 ipv6 address fc00:3::2/64
+                !
+                interface eth3
+                 ip address 10.0.5.2/24
+                 ipv6 address fc00:8::2/64
+                !
+                router ospf
+                 redistribute static
+                 redistribute connected
+                 redistribute rip
+                 network 10.0.0.2/24 area 1.0.0.0
+                 network 10.0.3.2/24 area 1.0.0.0
+                !
+                
+            }
+        }
+    }
+    custom-selected default
+    custom-enabled true
 }
 
 node n2 {
@@ -119,6 +187,34 @@ node n2 {
     labelcoords {312 51}
     interface-peer {eth0 n0}
     interface-peer {eth1 n1}
+    custom-configs {
+        custom-config-id default {
+            custom-command /usr/local/bin/quaggaboot.sh
+            config {
+                interface lo0
+                 ip address 127.0.0.1/8
+                 ipv6 address ::1/128
+                !
+                interface eth0
+                 ip address 10.0.1.2/24
+                 ipv6 address fc00:1::2/64
+                !
+                interface eth1
+                 ip address 10.0.3.1/24
+                 ipv6 address fc00:3::1/64
+                !
+                router ospf
+                 redistribute static
+                 redistribute connected
+                 redistribute rip
+                 network 0.0.0.0/0 area 1.0.0.0
+                !
+                
+            }
+        }
+    }
+    custom-selected default
+    custom-enabled true
 }
 
 node n3 {
@@ -160,6 +256,38 @@ node n3 {
     interface-peer {eth0 n4}
     interface-peer {eth2 n6}
     interface-peer {eth1 n1}
+    custom-configs {
+        custom-config-id default {
+            custom-command /usr/local/bin/quaggaboot.sh
+            config {
+                interface lo0
+                 ip address 127.0.0.1/8
+                 ipv6 address ::1/128
+                !
+                interface eth0
+                 ip address 10.0.4.1/24
+                 ipv6 address fc00:4::1/64
+                !
+                interface eth2
+                 ip address 10.0.6.1/24
+                 ipv6 address fc00:6::1/64
+                !
+                interface eth1
+                 ip address 10.0.5.1/24
+                 ipv6 address fc00:8::1/64
+                !
+                router ospf
+                 redistribute static
+                 redistribute connected
+                 redistribute rip
+                 network 0.0.0.0/0 area 0.0.0.0
+                !
+                
+            }
+        }
+    }
+    custom-selected default
+    custom-enabled true
 }
 
 node n4 {
@@ -325,6 +453,7 @@ link l7 {
 }
 
 link l8 {
+    color Red
     nodes {n5 n7}
     bandwidth 0
 }
@@ -348,7 +477,7 @@ option show {
     ip_addresses yes
     ipv6_addresses no
     node_labels yes
-    link_labels yes
+    link_labels no
     background_images no
     annotations yes
     hostsAutoAssign no
