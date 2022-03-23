@@ -560,13 +560,10 @@ node n8 {
                 !
                 interface eth0
                  ip address 10.0.8.1/24
-                 ipv6 address fc00:c::1/64
-                 ip osfp cost 1
+                ip ospf cost 2
                 !
                 interface eth1
                  ip address 10.0.12.1/24
-                 ipv6 address fc00:11::1/64
-                 ip ospf cost 1
                 !
                 router ospf
                  redistribute static
@@ -694,15 +691,12 @@ node n10 {
                 !
                 interface eth0
                  ip address 10.0.10.1/24
-                 ipv6 address fc00:f::1/64
                 !
                 interface eth1
                  ip address 10.0.11.2/24
-                 ipv6 address fc00:10::2/64
                 !
                 interface eth2
                  ip address 10.0.13.1/24
-                 ipv6 address fc00:12::1/64
                 !
                 router ospf
                  redistribute static
@@ -747,8 +741,8 @@ node n11 {
 	!
     }
     canvas c0
-    iconcoords {504 504}
-    labelcoords {504 529}
+    iconcoords {456 504}
+    labelcoords {456 529}
     interface-peer {eth0 n10}
     interface-peer {eth1 n8}
     custom-configs {
@@ -761,12 +755,10 @@ node n11 {
                 !
                 interface eth0
                  ip address 10.0.11.1/24
-                 ipv6 address fc00:10::1/64
                  ip ospf cost 1
                 !
                 interface eth1
                  ip address 10.0.12.2/24
-                 ipv6 address fc00:11::2/64
                  ip ospf cost 1
                 !
                 router ospf
